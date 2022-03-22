@@ -4,24 +4,22 @@
   "private": false,
   "main": "app.js",
   "engines": {
-    "node": "v16.13.1",
-    "npm":"6.14.5"
+    "node": "v16.13.1"
   },
   "scripts": {
     "start": "node app.js",
-    "test":"echo \"Error: no test specified\"&&exit 1",
-    "dev":"node ./bin/www"
+    "test": "echo \"Error: no test specified\"&&exit 1",
+    "dev": "node ./bin/www"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
-    "express": "~4.16.1",
+    "express": "^4.16.4",
     "hbs": "^4.2.0",
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
+    "node": "v16.13.1",
     "nodemon": "^2.0.15",
-    "sass": "^1.49.9",
-    "node":"v16.13.1"
+    "sass": "^1.49.9"
   }
-
 }
