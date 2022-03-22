@@ -2,6 +2,9 @@
   "name": "mon-web-midterm",
   "version": "0.0.0",
   "private": true,
+  "engines": {
+    "node": "v16.13.1"
+  },
   "scripts": {
     "start": "node ./bin/www"
   },
