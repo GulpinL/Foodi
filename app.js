@@ -13,7 +13,10 @@ var app = express();
 //const handlebars = require('express-handlebars');
 const hbs = require("hbs");
 app.use(express.static(path.join(__dirname, 'public')));
-
+const port =process.env.PORT ||3000;
+app.listen(port, function(){
+  console.log("server start successfully");
+})
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
