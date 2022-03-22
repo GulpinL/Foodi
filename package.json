@@ -1,7 +1,8 @@
 {
   "name": "mon-web-midterm",
   "version": "0.0.0",
-  "private": true,
+  "private": false,
+  "main": "app.js",
   "engines": {
     "node": "v16.13.1",
     "npm":"6.14.5"
