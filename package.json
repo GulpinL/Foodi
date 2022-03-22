@@ -13,7 +13,8 @@
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
     "nodemon": "^2.0.15",
-    "sass": "^1.49.9"
-  },
-  "devDependencies": {}
+    "sass": "^1.49.9",
+    "node":"v16.13.1"
+  }
+
 }
