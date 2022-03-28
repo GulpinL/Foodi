@@ -15,7 +15,7 @@ class UserController {
       await user.save();
       const token = await user.generateAuthToken();
       res.status(201).send({ user, token });
-      res.render("index", { user: user });
+      res.redirect("/");
     } catch (error) {
       console.log(error);
       res.status(400).send(error);

@@ -1,5 +1,8 @@
 const Food = require("../models/foodModel");
-const { mutipleMongooseToObject } = require("../../util/mongoose");
+const {
+  mutipleMongooseToObject,
+  mongooseToObject,
+} = require("../../util/mongoose");
 
 class adminController {
   // get home page
@@ -28,6 +31,30 @@ class adminController {
     const food = new Food(req.body);
     food.save();
     res.redirect("/admin/danh-sach-san-pham");
+  }
+
+  update(req, res, next) {
+    Food.findOne({ slug: req.params.slug })
+      .then((food) => {
+        food = mongooseToObject(food);
+        console.log(food);
+        res.render("admin/update", {
+          food,
+        });
+      })
+      .catch((err) => next(err));
+  }
+
+  updated(req, res, next) {
+    Food.findByIdAndUpdate(req.params._id, req.body)
+      .then(() => res.redirect("/admin/danh-sach-san-pham"))
+      .catch((err) => next(err));
+  }
+
+  delete(req, res, next) {
+    Food.findOneAndDelete({ slug: req.params.slug })
+      .then(() => res.redirect("/admin/danh-sach-san-pham"))
+      .catch((err) => next(err));
   }
 }
 
