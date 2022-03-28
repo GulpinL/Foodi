@@ -8,6 +8,7 @@ const hbshelpers = require("handlebars-helpers");
 const multihelpers = hbshelpers();
 const route = require("./routes/index");
 const db = require("./config/db");
+require("dotenv").config();
 
 db.connect();
 
