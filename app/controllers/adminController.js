@@ -6,7 +6,7 @@ const {
 
 class adminController {
   // get home page
-  menu(req, res, next) {
+  renderAdminHomePage(req, res, next) {
     res.render("admin/menu");
   }
 

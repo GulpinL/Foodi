@@ -4,7 +4,7 @@ const { mongooseToObject } = require("../../util/mongoose");
 class UserController {
   // [GET] sign-in page
   signIn(req, res) {
-    res.render("user/sign-in");
+    res.render("user/register");
   }
 
   // [POST] register a new user
@@ -20,6 +20,7 @@ class UserController {
       console.log(error);
       res.status(400).send(error);
     }
+    
   }
 
   // [GET] login a user
@@ -40,7 +41,7 @@ class UserController {
       }
       const token = await user.generateAuthToken();
       console.log(`loged in user: ${user.name} with token: ${token}`);
-      res.redirect("/");
+      res.redirect("/admin");
     } catch (error) {
       res.send("error, check server log");
     }

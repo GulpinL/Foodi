@@ -4,7 +4,7 @@ const adminController = require("../app/controllers/adminController");
 const foodController = require("../app/controllers/foodController");
 
 /* GET home page. */
-router.get("/", adminController.menu);
+router.get("/", adminController.renderAdminHomePage);
 router.get("/danh-sach-san-pham", adminController.listProduct);
 router.get("/them-san-pham", adminController.addProduct);
 router.post("/store", adminController.store);
