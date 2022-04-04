@@ -8,6 +8,9 @@ const hbshelpers = require("handlebars-helpers");
 const multihelpers = hbshelpers();
 const route = require("./routes/index");
 const db = require("./config/db");
+
+
+
 require("dotenv").config();
 
 db.connect();
@@ -34,7 +37,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-// route
+//test wiki GulpinL, delete later !
+
+// route // function call /routes/index
 route(app);
 
 // catch 404 and forward to error handler
