@@ -5,7 +5,7 @@ const UserController = require("../app/controllers/userController");
 /* GET users listing. */
 router.get("/", UserController.renderUserPage);
 
-router.get("/sign-in", UserController.signIn);
+router.get("/register", UserController.signIn);
 
 router.post("/register", UserController.register);
 
