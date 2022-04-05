@@ -2,6 +2,9 @@ const User = require("../models/userModel");
 const { mongooseToObject } = require("../../util/mongoose");
 
 class UserController {
+  renderUserPage(req, res, next) {
+    res.render("user/user-profile");
+  }
   // [GET] sign-in page
   signIn(req, res) {
     res.render("user/register");

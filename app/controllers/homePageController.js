@@ -23,6 +23,14 @@ class homePageController {
     res.render("homePageCustomer/menu");
   }
 
+
+  // renderUserPage(req, res){
+  //   res.render("user/user-profile");
+  // }
+
+  renderTestPage(req, res, next){
+    res.render("testViews");
+  }
   renderShoppingCart(req, res, next) {
     res.render("homePageCustomer/shoppingCart");
   }
