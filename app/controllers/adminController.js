@@ -2,7 +2,7 @@ const Food = require("../models/foodModel");
 const {
   mutipleMongooseToObject,
   mongooseToObject,
-} = require("../../util/mongoose");
+} = require("../services/util/mongoose");
 
 class adminController {
   // get home page

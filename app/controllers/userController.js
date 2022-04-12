@@ -1,9 +1,15 @@
 const User = require("../models/userModel");
-const { mongooseToObject } = require("../../util/mongoose");
+const { mongooseToObject } = require("../services/util/mongoose");
 
 class UserController {
   renderUserPage(req, res, next) {
-    res.render("user/user-profile");
+    //res.json(User);
+    //const UserName =res.query.name;
+    //const UserName2 =req.body.name;
+    const UserName =" Long at UserController";
+
+    //res.local.User.name
+    res.render("user/user-profile",{UserName});
   }
   // [GET] sign-in page
   signIn(req, res) {
@@ -31,6 +37,8 @@ class UserController {
     res.render("user/login");
   }
 
+
+  
   // [POST] login a user
   async logedin(req, res) {
     //Login a registered user
@@ -44,7 +52,11 @@ class UserController {
       }
       const token = await user.generateAuthToken();
       console.log(`loged in user: ${user.name} with token: ${token}`);
-      res.redirect("/admin");
+
+      const UserName = user.name;
+      //res.render('index',{UserName:user.name})
+      // res.redirect('/${UserName}');
+      res.redirect("/");
     } catch (error) {
       res.send("error, check server log");
     }

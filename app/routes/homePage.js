@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-const homePage = require("../app/controllers/homePageController");
+const homePage = require("../controllers/homePageController");
 
 /* GET home page. */
 router.get("/", homePage.renderHomePage);
@@ -11,6 +11,10 @@ router.get("/menu",homePage.renderMenu);
 // router.get("/user",homePage.renderUserPage);
 router.get("/shoppingCart",homePage.renderShoppingCart);
 
+
+//TEST here delete later
 router.get("/test",homePage.renderTestPage);
+// router.get("/:UserName'",homePage.renderUserPage);
+router.post("/",homePage.renderUserPage);/////////////////////////////
 
 module.exports = router;

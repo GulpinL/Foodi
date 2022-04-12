@@ -14,4 +14,11 @@
       </div>
     </div>
     {{/each}}
+
+     {{#if MYUserName}}
+                    <span>Hello at index {{MYUserName}}</span><a href="/user/logout">Logout</a>
+      {{else}}
+                  <a href="/user/login">HOMEPAGE YOU missing UserName or UserName is empty</a>
+      {{/if}}
+
 </div>

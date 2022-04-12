@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
-const adminController = require("../app/controllers/adminController");
-const foodController = require("../app/controllers/foodController");
+const adminController = require("../controllers/adminController");
+const foodController = require("../controllers/foodController");
 
 /* GET home page. */
 router.get("/", adminController.renderAdminHomePage);

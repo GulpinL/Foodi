@@ -6,15 +6,13 @@ var logger = require("morgan");
 var { engine } = require("express-handlebars");
 const hbshelpers = require("handlebars-helpers");
 const multihelpers = hbshelpers();
-const route = require("./routes/index");
+// import route, db, env 
+const route = require("./app/routes/index");
 const db = require("./config/db");
-
-
-
 require("dotenv").config();
 
-db.connect();
 
+db.connect();
 var app = express();
 
 // view engine setup
@@ -30,14 +28,17 @@ app.engine(
   })
 );
 app.set("view engine", "hbs");
-
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-//test wiki GulpinL, delete later !
+//TEST LOGIN, delete later!
+app.use(function(req, res, next) {
+  res.locals.user=req.user;
+  next();
+})
 
 // route // function call /routes/index
 route(app);

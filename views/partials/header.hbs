@@ -102,9 +102,13 @@
                   <i class="fa fa-search" aria-hidden="true"></i>
                 </button>
               </form>
-              <a href="" class="order_online">
-                Order Online
-              </a>
+              <div class="order_online">
+                {{#if user}}
+                    <span>Hello {{user.name}}</span><a href="/user/logout">Logout</a>
+                {{else}}
+                  <a href="/user/login">Login</a>
+                {{/if}}
+              </div>
             </div>
           </div>
         </nav>

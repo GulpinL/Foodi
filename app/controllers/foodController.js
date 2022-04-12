@@ -1,5 +1,5 @@
 const Food = require("../models/foodModel");
-const { mongooseToObject } = require("../../util/mongoose");
+const { mongooseToObject } = require("../services/util/mongoose");
 
 class FoodController {
   // [GET] /food/:slug

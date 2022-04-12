@@ -1,6 +1,6 @@
 var express = require("express");
 
-const foodPage = require("../app/controllers/foodController");
+const foodPage = require("../controllers/foodController");
 var router = express.Router();
 
 /* GET users listing. */
