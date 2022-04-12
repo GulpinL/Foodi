@@ -1,38 +1,20 @@
-const Food = require("../models/foodModel");
+//const Food = require("../models/foodModel");
 const User =require("../models/userModel");
+const ITEMS_PER_PAGE =9;
+
+const { listFoods } = require("../services/homePageService");
 
 class homePageController {
-  // get home page
-  
-  renderHomePage(req, res, next) {
-    //const users =[];
-    //const BodyUser =new User();
-    //const UserName ="halong 9c1 at homepageController";
+  renderHomePage =async(req, res, next) =>{
 
+    // const foodList=await Food.find({});
+    // let foods=foodList.map(food=>food.toObject());
+    // res.render("index", { foods} );
+    
+    const foods= await listFoods;
+    res.render("index", { foods} );
+    
 
-
-
-    // const { email, password } = req.body;
-    // const UserName = email;
-
-
-
-    //const UserName = req.body;
-
-    // const user = await User.findByCredentials(name);
-    // if (!user) {
-    //     user.name="Empty Name Long at homePageController";
-    //   }
-    //UserName=req.body.name;
-    //console.log(req.body);
-    //const userName=req.body.name;
-
-    Food.find({})
-      .then((foods) => {
-        foods = foods.map((food) => food.toObject());
-        res.render("index", { foods} );
-      })
-      .catch((err) => next(err));
   }
   renderUserPage(req, res){
 
