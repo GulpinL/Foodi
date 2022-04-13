@@ -1,19 +1,17 @@
-//const Food = require("../models/foodModel");
+// const Food = require("../models/foodModel");
 const User =require("../models/userModel");
 const ITEMS_PER_PAGE =9;
 
-const { listFoods } = require("../services/homePageService");
+const  listFoods  = require("../services/homePageService");
+// const  {listFoods}  = require("../services/homePageService");
 
 class homePageController {
-  renderHomePage =async(req, res, next) =>{
-
-    // const foodList=await Food.find({});
-    // let foods=foodList.map(food=>food.toObject());
-    // res.render("index", { foods} );
-    
-    const foods= await listFoods;
-    res.render("index", { foods} );
-    
+  renderHomePage =async(req, res, next) =>{  
+    const foods=await listFoods.listFood();
+    // const foods=await Food.find({}).lean();//SUCCESSn
+    const user = await User.find({}).lean();
+   
+    res.render("index", { foods ,user} );
 
   }
   renderUserPage(req, res){

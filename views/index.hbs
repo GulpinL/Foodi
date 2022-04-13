@@ -17,6 +17,10 @@
     {{/each}}
 
 
+{{#each user}}
+<div>My name is:{{name}}</div>
+<div>my email is: {{email}}</div>
+{{/each}}
      {{#if MYUserName}}
                     <span>Hello at index {{MYUserName}}</span><a href="/user/logout">Logout</a>
       {{else}}

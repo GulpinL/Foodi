@@ -19,26 +19,8 @@ const food = new Schema(
 
 module.exports = mongoose.model("food", food);
 
-// const { default: mongoose } = require("mongoose");
-// const slug = require("mongoose-slug-generator");
-// mongoose.plugin(slug);
-
-// const Schema = mongoose.Schema;
-
-// const food = new Schema(
-//   {
-//     name: String,
-//     price: Number,
-//     img: String,
-//     description: String,
-//     slug: { type: String, slug: "name", unique: true },
-//   },
-//   {
-//     timestamps: true,
-//   }
-// );
+// const foods= mongoose.model("food", food);
+// module.exports ={foods}
 
 
-// const Foods = mongoose.model("food", food);
 
-// module.exports = {Foods}
