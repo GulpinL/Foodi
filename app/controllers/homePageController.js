@@ -2,18 +2,38 @@
 const User =require("../models/userModel");
 const ITEMS_PER_PAGE =9;
 
-const  listFoods  = require("../services/homePageService");
+const  homePageService  = require("../services/homePageService");
 // const  {listFoods}  = require("../services/homePageService");
 
 class homePageController {
+  
   renderHomePage =async(req, res, next) =>{  
-    const foods=await listFoods.listFood();
-    // const foods=await Food.find({}).lean();//SUCCESSn
+    // lay page tu req
+    let { page } = req.query;
+    if (!page || isNaN(page)) page = 1;
+    else{
+        page = parseInt(page);
+    }
+    //lay foods va so luong food
+    const count =await homePageService.getNumberOfFoods();
+    const foods  =await homePageService.ListTeacher(page);
+    // const totalPages = Math.ceil(countFoods / ITEMS_PER_PAGE);
+    const totalPages = Math.ceil(count / 2);
+    const nextPage = page + 1;
+    const previousPage = page - 1;
+    const pages= Array.from(Array(totalPages).keys()).map(i => i + 1)
+    // const {foods, countFoods} =await homePageService.getFoodsAndCountFoods();
     const user = await User.find({}).lean();
-   
-    res.render("index", { foods ,user} );
 
+    // console.log(countFoods);
+    console.log(foods);
+    // console.log(totalPages);
+    console.log(nextPage);
+    console.log(previousPage);
+    // res.render("index", { foods,countFoods,totalPages,pages: Array.from(Array(totalPages).keys()).map(i => i + 1),nextPage, previousPage,} );
+    res.render("index",{foods,page,pages,user})
   }
+
   renderUserPage(req, res){
 
     const MYUserName= req.params.UserName;

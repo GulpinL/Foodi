@@ -21,11 +21,20 @@
 <div>My name is:{{name}}</div>
 <div>my email is: {{email}}</div>
 {{/each}}
-     {{#if MYUserName}}
+
+  {{#if MYUserName}}
                     <span>Hello at index {{MYUserName}}</span><a href="/user/logout">Logout</a>
-      {{else}}
+  {{else}}
                   <a href="/user/login">HOMEPAGE YOU missing UserName or UserName is empty</a>
-      {{/if}}
+  {{/if}}
+
+<div class="product__pagination">
+                    <a href="?page={{previousPage}}" class="prev"><i class="fa fa-long-arrow-left"></i></a>
+                    {{#pages}}
+                        <a href="?page={{.}}">{{.}}</a>
+                    {{/pages}}
+                    <a href="?page={{nextPage}}"><i class="fa fa-long-arrow-right"></i></a>
+</div>
 
 </div>
 </div>
