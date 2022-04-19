@@ -29,7 +29,9 @@ body {
 .layout_padding-bottom {
   padding-bottom: 90px;
 }
-
+h3{
+  color:red;
+}
 h1,
 h2 {
   font-family: 'Dancing Script', cursive;
@@ -542,6 +544,11 @@ a:focus {
 }
 
 .food_section .box .detail-box h5 {
+  font-weight: 600;
+}
+
+.food_section .box .detail-box a {
+  color: rgb(255, 255, 255);
   font-weight: 600;
 }
 
