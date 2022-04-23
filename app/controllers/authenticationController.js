@@ -1,30 +1,33 @@
-const User = require("../models/userModel");
 const { mongooseToObject } = require("../services/util/mongoose");
+const  authenticationService  = require("../services/authenticationService");
 
 class authenticationController {
+  
+  //RENDER things
   renderUserPage(req, res, next) {
     const UserName =" Long at UserController";    //res.local.User.name
     res.render("userLogined/userProfile",{UserName});//logined
   }
-
+  
   userProfileEditingPage(req, res, next) {
     const UserName =" Long at UserController";
     res.render("authentication/userProfile",{UserName});
   }
-
+  
   signIn(req, res) {
     res.render("authentication/register");
   }
-
+  
+  login(req, res) {
+    res.render("authentication/login");
+  }
   // [POST] register a new user
-  async register(req, res) {
-    // Create a new user
+  async register(req, res) {    // Create a new user
     try {
-      const user = new User(req.body);
-      await user.save();
-      const token = await user.generateAuthToken();
-      //res.status(201).send({ user, token });// NOT USE TWO RES AT THE SAME 
+      const { password, email,name } = req.body;
+      authenticationService.register(email, password, name);
       res.redirect("/");
+
     } catch (error) {
       console.log(error);
       res.status(400).send(error);
@@ -32,10 +35,6 @@ class authenticationController {
     
   }
 
-  // [GET] login a user
-  login(req, res) {
-    res.render("authentication/login");
-  }
 
   // [POST] login a user
   async logedin(req, res) {
@@ -51,15 +50,26 @@ class authenticationController {
       const token = await user.generateAuthToken();
       console.log(`loged in user: ${user.name} with token: ${token}`);
 
-    //   const UserName = user.name;
-      //res.render('index',{UserName:user.name})
-      // res.redirect('/${UserName}');
       res.redirect("/");
-    } catch (error) {
-      res.send("error, check server log");
+    } catch (error) {// neu khong tim thay User thi chinh o day
+      res.redirect("/menu");// redirect vo login page
     }
   }
+//   loginShow (req, res) {
+//       if (req.user) {
+//         res.redirect('/');
+//       } else {
+//         res.render('authentication/login', {
+//           title: 'Login',
+//         });
+//       }
+// };
 
+
+    // logout(req, res) {
+    //   req.logout();
+    //   res.redirect('/');
+    // };
 
 }
 

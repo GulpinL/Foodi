@@ -1,16 +1,36 @@
-const Food = require("../models/foodModel");
-const { mongooseToObject } = require("../services/util/mongoose");
+// const Food = require("../models/foodModel");
+// const { mongooseToObject } = require("../services/util/mongoose");
 
+const  foodService  = require("../services/foodService");
+const commentService= require("../services/commentService");
 class FoodController {
-  // [GET] /food/:slug
-  show(req, res, next) {
-    Food.findOne({ slug: req.params.slug })
-      .then((food) => {
-        console.log(food);
-        res.render("food/foodDetail", { food: mongooseToObject(food) });
-      })
-      .catch((err) => next(err));
-    // res.send("respond with a resource " + req.params.slug);
+
+  renderFoodDetail =async(req, res, next) =>{
+    const slug =req.params.slug;
+    const food =await foodService.getFoodDetailBySlut(slug);
+    const foodId=food._id;
+    const comments =await commentService.getCommentByFoodId(foodId);
+
+    
+    console.log('slu o COMMENT LA :',slug);
+    console.log('FOOD ID la: ', foodId);
+    console.log('CONTENT cua COMMENT la :',comments);
+
+
+    res.render("food/foodDetail", {food, comments});
+  }
+
+  addCommentFood =async(req, res, next) =>{
+    const slug =req.params.slug;
+    const commentContent=req.body.comment;
+
+    const food =await foodService.getFoodDetailBySlut(slug);
+    const foodId=food._id;
+    const addComment=await commentService.addComment(foodId,commentContent);
+
+    res.redirect("/");///:slug
+    //res.redirect("/:{{slug}}");
+    // res.render("food/foodDetail", {food});
   }
 }
 

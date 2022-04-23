@@ -5,12 +5,11 @@ const {
 } = require("../services/util/mongoose");
 
 class adminController {
-  // Render Page
+  // RENDER PAGE
   renderAdminHomePage(req, res, next) {
     res.render("admin/_mainAdmin");
   }
 
-  // get list product
   renderFoodList(req, res, next) {
     Food.find({})
       .then((foods) => {
@@ -21,7 +20,6 @@ class adminController {
       .catch((err) => next(err));
   }
 
-  // get add product page
   renderFoodAdding(req, res, next) {
     res.render("admin/foodAdding");
   }
