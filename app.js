@@ -3,10 +3,14 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-var { engine } = require("express-handlebars");
+var { engine, create  } = require("express-handlebars");
 const hbshelpers = require("handlebars-helpers");
 const multihelpers = hbshelpers();
 // import route, db, env 
+const session = require('express-session');
+const passport = require('./app/services/passport')
+const expressHandlebarsSections = require('express-handlebars-sections');
+
 const route = require("./app/routes/index");
 const db = require("./config/db");
 require("dotenv").config();
@@ -20,11 +24,14 @@ app.set("views", path.join(__dirname, "views"));
 app.engine(
   "hbs",
   engine({
-    helpers: multihelpers,
+    //helpers: multihelpers,
     partialsDir: ["views/partials"],
     extname: ".hbs",
     layoutsDir: "views",
     defaultLayout: "layout",
+    helpers: {
+      section: expressHandlebarsSections()
+    }
   })
 );
 app.set("view engine", "hbs");
@@ -34,7 +41,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "/public")));
 
+//session
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false,
+}));
+app.use(passport.authenticate('session'));
 //TEST LOGIN, delete later!
+
+
 app.use(function(req, res, next) {
   res.locals.user=req.user;
   next();

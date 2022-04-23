@@ -103,11 +103,16 @@
                 </button>
               </form>
               <div class="order_online">
-                {{#if user}}
+                 {{#if user}}
+                                <span>Hello {{user.email}}!</span><a href="/authentication/logout">Logout</a>
+                  {{else}}
+                                <a href="/authentication/login"><i class="fa fa-user"></i> Login</a>
+                  {{/if}}
+                {{!-- {{#if user}}
                     <span>Hello {{user.name}}</span><a href="/authentication/logout">Logout</a>
                 {{else}}
                   <a href="/authentication/login">Login</a>
-                {{/if}}
+                {{/if}} --}}
               </div>
             </div>
           </div>

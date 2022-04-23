@@ -17,13 +17,13 @@ class homePageController {
     //lay foods va so luong food
     const count =await homePageService.getNumberOfFoods();
     const foods  =await homePageService.ListTeacher(page);
-    const user = await User.find({}).lean();
+    //const user = await User.find({}).lean();
     const totalPages = Math.ceil(count / 2);//ITEMS_PER_PAGE=2
     const nextPage = page + 1;
     const previousPage = page - 1;
     const pages= Array.from(Array(totalPages).keys()).map(i => i + 1);
     
-    res.render("index",{foods,page,pages,user})
+    res.render("index",{foods,page,pages})
     // res.render("index", { foods,countFoods,totalPages,pages: Array.from(Array(totalPages).keys()).map(i => i + 1),nextPage, previousPage,} );
   }
 

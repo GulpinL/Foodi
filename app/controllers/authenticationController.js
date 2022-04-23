@@ -19,57 +19,47 @@ class authenticationController {
   }
   
   login(req, res) {
-    res.render("authentication/login");
+    if (req.user) {
+      console.log("USER EXIST GULPINL");
+      res.redirect('/');
+    } else {
+      res.render('authentication/login', {
+        title: 'Login',
+      });
+    }
   }
   // [POST] register a new user
   async register(req, res) {    // Create a new user
-    try {
-      const { password, email,name } = req.body;
-      authenticationService.register(email, password, name);
-      res.redirect("/");
 
-    } catch (error) {
-      console.log(error);
-      res.status(400).send(error);
-    }
+      const { password, email,name } = req.body;
+      const user=await authenticationService.isUserExist(email);
+      if (user) {
+        res.render('authentication/register', {
+          title: 'Register',
+          error: 'User already exist',
+        });
+        return;
+      }
+  
+      await authenticationService.register(email, password, name);
+      res.redirect("/");
     
   }
 
+  logout(req, res) {
+    req.logout();
+    res.redirect('/');
+  };
 
-  // [POST] login a user
-  async logedin(req, res) {
-    //Login a registered user
-    try {
-      const { email, password } = req.body;
-      const user = await User.findByCredentials(email, password);
-      if (!user) {
-        return res
-          .status(401)
-          .send({ error: "Login failed! Check authentication credentials" });
-      }
-      const token = await user.generateAuthToken();
-      console.log(`loged in user: ${user.name} with token: ${token}`);
-
-      res.redirect("/");
-    } catch (error) {// neu khong tim thay User thi chinh o day
-      res.redirect("/menu");// redirect vo login page
-    }
+  checkEmailExist= async (req, res) => {
+    const email=req.params.email;
+    const user = await authenticationService.isUserExist(email);
+    const checkBooleanUser=!!user;
+    // console.log("DAng test AJAX CHECK MAIL valid",user);
+    console.log("DAng test AJAX CHECK MAIL BOLEAN",checkBooleanUser);
+    res.json(!!user);//true or false
   }
-//   loginShow (req, res) {
-//       if (req.user) {
-//         res.redirect('/');
-//       } else {
-//         res.render('authentication/login', {
-//           title: 'Login',
-//         });
-//       }
-// };
 
-
-    // logout(req, res) {
-    //   req.logout();
-    //   res.redirect('/');
-    // };
 
 }
 

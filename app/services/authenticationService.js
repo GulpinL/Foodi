@@ -1,10 +1,6 @@
 const User = require("../models/userModel");
-
-exports.getNumberOfFoods = async (page) =>{
-    const foods =await Food.find({}).lean();
-    const countFoods=foods.length;
-    return countFoods;
-};
+const bcrypt = require('bcryptjs');
+//PASSPORT
 
 exports.register = async (userEmail, userPassword,userName)=> {
     const user = new User({
@@ -18,29 +14,21 @@ exports.register = async (userEmail, userPassword,userName)=> {
     return 1;
   };
   
-//   exports.isUserExist = function (email) {// ? use where
-    
-
-//     return users.findOne({
-//       where: {
-//         email: email,
-//       },
-//       raw: true,
-//     });
-//   };
+  exports.isUserExist =  async (email)=> {// ? use where
+    const user = await User.findOne({ email:email });
+    return user;
+  };
   
-//   exports.verifyUser = async function (email, password) {// ?
-//     const user = await users.findOne({
-//       where: {
-//         email: email,
-//       },
-//       raw: true,
-//     });
-//     if (!user) {
-//       return false;
-//     }
-//     if (bcrypt.compareSync(password, user.password))
-//       return user;
-//     return false;
-//   };
+  exports.verifyUser = async function (email, password) {// ?
+    // const user = await users.findOne({email:verifyUserEmail});//lean();
+    const user = await User.findOne({ email });
+    // const user = await User.findByCredentials(email, password);
+    if (!user) {
+      return false;
+    }
+    if (bcrypt.compareSync(password, user.password))
+      return user;
+    return false;
+
+  };
 
