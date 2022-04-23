@@ -1,7 +1,7 @@
 <nav class="nav">
   <a class="nav-link active" href="/">Home</a>
-  <a class="nav-link" href="user/login">Dang Nhap</a>
-  <a class="nav-link" href="user/sign-in">Dang Ky</a>
+  <a class="nav-link" href="authentication/login">Dang Nhap</a>
+  <a class="nav-link" href="authentication/sign-in">Dang Ky</a>
   <a class="nav-link " href="#" tabindex="-1" >Gio Hang</a>
 </nav>
 
@@ -40,7 +40,7 @@
               </li>
             </ul>
             <div class="user_option">
-              <a href="/user" class="user_link">
+              <a href="/authentication" class="user_link">
                 <i class="fa fa-user" aria-hidden="true"></i>
               </a>
               <a class="cart_link" href="/shoppingCart">
@@ -104,9 +104,9 @@
               </form>
               <div class="order_online">
                 {{#if user}}
-                    <span>Hello {{user.name}}</span><a href="/user/logout">Logout</a>
+                    <span>Hello {{user.name}}</span><a href="/authentication/logout">Logout</a>
                 {{else}}
-                  <a href="/user/login">Login</a>
+                  <a href="/authentication/login">Login</a>
                 {{/if}}
               </div>
             </div>

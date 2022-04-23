@@ -20,8 +20,8 @@
       <td>{{this.description}}</td>
       <td><a href="{{this.img}}" class="btn btn-primary">image</a></td>
       <td>{{this.rating}}</td>
-      <td><a href="update/{{this.slug}}" class="btn btn-primary">update</a></td>
-      <td><form id="{{this.slug}}" method="post" action="delete/{{this.slug}}"></form>
+      <td><a href="updateFood/{{this.slug}}" class="btn btn-primary">update</a></td>
+      <td><form id="{{this.slug}}" method="post" action="deleteFood/{{this.slug}}"></form>
 <a onclick="document.getElementById('{{this.slug}}').submit();" class="btn btn-primary">delete it</a></td>
     </tr>
     {{/each}}

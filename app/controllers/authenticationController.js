@@ -1,29 +1,19 @@
 const User = require("../models/userModel");
 const { mongooseToObject } = require("../services/util/mongoose");
 
-class UserController {
+class authenticationController {
   renderUserPage(req, res, next) {
-    //res.json(User);
-    //const UserName =res.query.name;
-    //const UserName2 =req.body.name;
-    const UserName =" Long at UserController";
-
-    //res.local.User.name
-    res.render("user/user-profile",{UserName});
+    const UserName =" Long at UserController";    //res.local.User.name
+    res.render("userLogined/userProfile",{UserName});//logined
   }
 
   userProfileEditingPage(req, res, next) {
-    //res.json(User);
-    //const UserName =res.query.name;
-    //const UserName2 =req.body.name;
     const UserName =" Long at UserController";
-
-    //res.local.User.name
-    res.render("user/user-profile",{UserName});
+    res.render("authentication/userProfile",{UserName});
   }
-  // [GET] sign-in page
+
   signIn(req, res) {
-    res.render("user/register");
+    res.render("authentication/register");
   }
 
   // [POST] register a new user
@@ -33,7 +23,7 @@ class UserController {
       const user = new User(req.body);
       await user.save();
       const token = await user.generateAuthToken();
-      res.status(201).send({ user, token });
+      //res.status(201).send({ user, token });// NOT USE TWO RES AT THE SAME 
       res.redirect("/");
     } catch (error) {
       console.log(error);
@@ -44,7 +34,7 @@ class UserController {
 
   // [GET] login a user
   login(req, res) {
-    res.render("user/login");
+    res.render("authentication/login");
   }
 
   // [POST] login a user
@@ -61,7 +51,7 @@ class UserController {
       const token = await user.generateAuthToken();
       console.log(`loged in user: ${user.name} with token: ${token}`);
 
-      const UserName = user.name;
+    //   const UserName = user.name;
       //res.render('index',{UserName:user.name})
       // res.redirect('/${UserName}');
       res.redirect("/");
@@ -73,4 +63,4 @@ class UserController {
 
 }
 
-module.exports = new UserController();
+module.exports = new authenticationController();

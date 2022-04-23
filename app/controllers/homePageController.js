@@ -17,21 +17,14 @@ class homePageController {
     //lay foods va so luong food
     const count =await homePageService.getNumberOfFoods();
     const foods  =await homePageService.ListTeacher(page);
-    // const totalPages = Math.ceil(countFoods / ITEMS_PER_PAGE);
-    const totalPages = Math.ceil(count / 2);
+    const user = await User.find({}).lean();
+    const totalPages = Math.ceil(count / 2);//ITEMS_PER_PAGE=2
     const nextPage = page + 1;
     const previousPage = page - 1;
-    const pages= Array.from(Array(totalPages).keys()).map(i => i + 1)
-    // const {foods, countFoods} =await homePageService.getFoodsAndCountFoods();
-    const user = await User.find({}).lean();
-
-    // console.log(countFoods);
-    console.log(foods);
-    // console.log(totalPages);
-    console.log(nextPage);
-    console.log(previousPage);
-    // res.render("index", { foods,countFoods,totalPages,pages: Array.from(Array(totalPages).keys()).map(i => i + 1),nextPage, previousPage,} );
+    const pages= Array.from(Array(totalPages).keys()).map(i => i + 1);
+    
     res.render("index",{foods,page,pages,user})
+    // res.render("index", { foods,countFoods,totalPages,pages: Array.from(Array(totalPages).keys()).map(i => i + 1),nextPage, previousPage,} );
   }
 
   renderUserPage(req, res){
@@ -47,27 +40,19 @@ class homePageController {
 
 
   renderAbout(req, res, next) {
-    res.render("homePageCustomer/about");
+    res.render("homePage/about");
   }
 
   renderBooktable(req, res, next) {
-    res.render("homePageCustomer/booktable");
+    res.render("homePage/booktable");
   }
 
   renderMenu(req, res, next) {
-    res.render("homePageCustomer/menu");
+    res.render("homePage/menu");
   }
-
-
-  // renderUserPage(req, res){
-  //   res.render("user/user-profile");
-  // }
-
-  renderTestPage(req, res, next){
-    res.render("testViews");
-  }
+  
   renderShoppingCart(req, res, next) {
-    res.render("homePageCustomer/shoppingCart");
+    res.render("homePage/shoppingCart");
   }
 
 }

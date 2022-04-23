@@ -12,9 +12,7 @@ router.get("/menu",homePage.renderMenu);
 router.get("/shoppingCart",homePage.renderShoppingCart);
 
 
-//TEST here delete later
-router.get("/test",homePage.renderTestPage);
 // router.get("/:UserName'",homePage.renderUserPage);
-router.post("/",homePage.renderUserPage);/////////////////////////////
+//router.post("/",homePage.renderUserPage);/////////////////////////////
 
 module.exports = router;

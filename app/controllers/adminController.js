@@ -5,16 +5,16 @@ const {
 } = require("../services/util/mongoose");
 
 class adminController {
-  // get home page
+  // Render Page
   renderAdminHomePage(req, res, next) {
-    res.render("admin/menu");
+    res.render("admin/_mainAdmin");
   }
 
   // get list product
-  listProduct(req, res, next) {
+  renderFoodList(req, res, next) {
     Food.find({})
       .then((foods) => {
-        res.render("admin/listProduct", {
+        res.render("admin/foodList", {
           foods: mutipleMongooseToObject(foods),
         });
       })
@@ -22,36 +22,36 @@ class adminController {
   }
 
   // get add product page
-  addProduct(req, res, next) {
-    res.render("admin/addProduct");
+  renderFoodAdding(req, res, next) {
+    res.render("admin/foodAdding");
   }
 
   // post add product from /admin/store
-  store(req, res, next) {
+  addFood(req, res, next) {
     const food = new Food(req.body);
     food.save();
     res.redirect("/admin/danh-sach-san-pham");
   }
 
-  update(req, res, next) {
+  updateFood(req, res, next) {
     Food.findOne({ slug: req.params.slug })
       .then((food) => {
         food = mongooseToObject(food);
         console.log(food);
-        res.render("admin/update", {
+        res.render("admin/foodEditing", {
           food,
         });
       })
       .catch((err) => next(err));
   }
 
-  updated(req, res, next) {
+  updatedFood(req, res, next) {
     Food.findByIdAndUpdate(req.params._id, req.body)
       .then(() => res.redirect("/admin/danh-sach-san-pham"))
       .catch((err) => next(err));
   }
 
-  delete(req, res, next) {
+  deleteFood(req, res, next) {
     Food.findOneAndDelete({ slug: req.params.slug })
       .then(() => res.redirect("/admin/danh-sach-san-pham"))
       .catch((err) => next(err));

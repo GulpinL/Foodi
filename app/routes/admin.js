@@ -5,15 +5,15 @@ const foodController = require("../controllers/foodController");
 
 /* GET home page. */
 router.get("/", adminController.renderAdminHomePage);
-router.get("/danh-sach-san-pham", adminController.listProduct);
-router.get("/them-san-pham", adminController.addProduct);
-router.post("/store", adminController.store);
+router.get("/danh-sach-san-pham", adminController.renderFoodList);
+router.get("/them-san-pham", adminController.renderFoodAdding);
+router.post("/addFood", adminController.addFood);
 //update product
-router.get("/update/:slug", adminController.update);
+router.get("/updateFood/:slug", adminController.updateFood);
 
-router.post("/updated/:_id", adminController.updated);
+router.post("/updatedFood/:_id", adminController.updatedFood);
 
 //delete product
-router.post("/delete/:slug", adminController.delete);
+router.post("/deleteFood/:slug", adminController.deleteFood);
 
 module.exports = router;
