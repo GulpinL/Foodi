@@ -1,0 +1,24 @@
+<div class="Product-List mt-4">
+  <div class="row">
+
+    {{#each foods}}
+    <div class="col-sm-6 col-lg-4">
+      <div class="card" >
+        <img src="{{img}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h3 class="card-title">{{name}}</h3>
+          <p class="card-text"> mô tả: {{description}}</p>
+          <p class="card-text">giá tiền: {{price}}</p>
+          <a href="/food/{{slug}}" class="btn btn-primary">chi tiet</a>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+
+     {{#if MYUserName}}
+                    <span>Hello at index {{MYUserName}}</span><a href="/user/logout">Logout</a>
+      {{else}}
+                  <a href="/user/login">HOMEPAGE YOU missing UserName or UserName is empty</a>
+      {{/if}}
+
+</div>

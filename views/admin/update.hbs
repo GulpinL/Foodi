@@ -1,0 +1,51 @@
+<form class="form-horizontal" action='../updated/{{food._id}}' method="POST">
+  <fieldset>
+    <div id="legend">
+      <legend class="">update dish </legend>
+    </div>
+    <div class="control-group">
+      <!-- name -->
+      <label class="control-label"  for="name">name</label>
+      <div class="controls">
+        <input type="text" id="name" name="name" placeholder="{{food.name}}" class="input-xlarge">
+        <p class="help-block">name of the dish</p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <!-- description -->
+      <label class="control-label"  for="description">description</label>
+      <div class="controls">
+        <input type="text" id="description" name="description" placeholder="{{food.description}}" class="input-xlarge">
+        <p class="help-block">description of the dish</p>
+      </div>
+    </div>
+ 
+    <div class="control-group">
+      <!-- price -->
+      <label class="control-label" for="price">price of dish</label>
+      <div class="controls">
+        <input type="number" id="price" name="price" placeholder="{{food.price}}" class="input-xlarge">
+        <p class="help-block">Please provide price of dish</p>
+      </div>
+    </div>
+ 
+    <div class="control-group">
+      <!-- Password-->
+      <label class="control-label" for="img">img</label>
+      <div class="controls">
+        <input type="text" id="img" name="img" placeholder="{{food.img}}" class="input-xlarge">
+        <p class="help-block">link cdn img of dish</p>
+      </div>
+    </div>
+ 
+    
+ 
+    <div class="control-group">
+      <!-- Button -->
+      <div class="controls">
+        <button class="btn btn-success">update</button>
+      </div>
+    </div>
+  </fieldset>
+</form>

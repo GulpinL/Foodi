@@ -1,0 +1,31 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#id</th>
+      <th scope="col">name</th>
+      <th scope="col">price</th>
+      <th scope="col">description</th>
+      <th scope="col">img</th>
+      <th scope="col">rating</th>
+      <th scope="col">update</th>
+      <th scope="col">delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each foods}}
+    <tr>
+      <th scope="row">{{this._id}}</th>
+      <td>{{this.name}}</td>
+      <td>{{this.price}}</td>
+      <td>{{this.description}}</td>
+      <td><a href="{{this.img}}" class="btn btn-primary">image</a></td>
+      <td>{{this.rating}}</td>
+      <td><a href="update/{{this.slug}}" class="btn btn-primary">update</a></td>
+      <td><form id="{{this.slug}}" method="post" action="delete/{{this.slug}}"></form>
+<a onclick="document.getElementById('{{this.slug}}').submit();" class="btn btn-primary">delete it</a></td>
+    </tr>
+    {{/each}}
+    
+  </tbody>
+</table>
+<a href="them-san-pham" class="btn btn-primary mt-4"> thêm sản phẩm mới</a>

@@ -1,0 +1,16 @@
+<div class="mt-4 container">
+  <div class="row">
+    <div class="col text-center">
+      <a href="admin/danh-sach-san-pham" class="btn btn-primary">danh sách sản phẩm</a>
+    </div>
+    <div class="col text-center">
+      <a class="btn btn-primary">danh sách nhân viên</a>
+    </div>
+  </div>
+
+   {{#if user}}
+                    <span>Hello {{user.name}}</span><a href="/user/logout">Logout</a>
+    {{else}}
+                  <a href="/user/login">Admin check user Login</a>
+    {{/if}}
+</div>
