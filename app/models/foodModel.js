@@ -10,6 +10,7 @@ const food = new Schema(
     price: Number,
     img: String,
     description: String,
+    category:String,
     slug: { type: String, slug: "name", unique: true },
   },
   {

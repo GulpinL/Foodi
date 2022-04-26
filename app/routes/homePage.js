@@ -1,16 +1,19 @@
 var express = require("express");
 var router = express.Router();
-const homePage = require("../controllers/homePageController");
+const homePageController = require("../controllers/homePageController");
 
+// const ajaxScript=require("../services/ajaxServiceTwo");
 /* GET home page. */
-router.get("/", homePage.renderHomePage);
-router.get("/about",homePage.renderAbout);
-router.get("/booktable",homePage.renderBooktable);
-router.get("/menu",homePage.renderMenu);
+router.get("/", homePageController.renderHomePage);
+router.get("/about",homePageController.renderAbout);
+router.get("/booktable",homePageController.renderBooktable);
+router.get("/menu",homePageController.renderMenu);
+router.get("/menu/:category",homePageController.filterMenu);
 
 // router.get("/user",homePage.renderUserPage);
-router.get("/shoppingCart",homePage.renderShoppingCart);
-
+router.get("/shoppingCart",homePageController.renderShoppingCart);
+router.get("/shoppingCart/:slug",homePageController.renderShoppingCart);
+// router.get('/api/check-food/:currentPage', homePage.ajaxFoodPaging);
 
 // router.get("/:UserName'",homePage.renderUserPage);
 //router.post("/",homePage.renderUserPage);/////////////////////////////

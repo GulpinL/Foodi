@@ -54,9 +54,6 @@ class authenticationController {
   checkEmailExist= async (req, res) => {
     const email=req.params.email;
     const user = await authenticationService.isUserExist(email);
-    const checkBooleanUser=!!user;
-    // console.log("DAng test AJAX CHECK MAIL valid",user);
-    console.log("DAng test AJAX CHECK MAIL BOLEAN",checkBooleanUser);
     res.json(!!user);//true or false
   }
 

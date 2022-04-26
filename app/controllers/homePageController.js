@@ -1,29 +1,30 @@
-// const Food = require("../models/foodModel");
-const User =require("../models/userModel");
 const ITEMS_PER_PAGE =9;
 
-const  homePageService  = require("../services/homePageService");
-// const  {listFoods}  = require("../services/homePageService");
+const  foodService  = require("../services/foodService");
+// const  {listFoods}  = require("../services/foodService");
 
 class homePageController {
   
   renderHomePage =async(req, res, next) =>{  
-    // lay page tu req
-    let { page } = req.query;
-    if (!page || isNaN(page)) page = 1;
+    let { currentPage } = req.query;
+    if (!currentPage || isNaN(currentPage)) currentPage = 1;
     else{
-        page = parseInt(page);
+      currentPage = parseInt(currentPage);
     }
-    //lay foods va so luong food
-    const count =await homePageService.getNumberOfFoods();
-    const foods  =await homePageService.ListTeacher(page);
-    //const user = await User.find({}).lean();
-    const totalPages = Math.ceil(count / 2);//ITEMS_PER_PAGE=2
-    const nextPage = page + 1;
-    const previousPage = page - 1;
-    const pages= Array.from(Array(totalPages).keys()).map(i => i + 1);
+
+    const numberFoodPerPage=2;
     
-    res.render("index",{foods,page,pages})
+    const count =await foodService.getNumberOfFoods();
+    const foods  =await foodService.getFoodsByFoodPerPage(currentPage,numberFoodPerPage);
+    // console.log("FOOD O TRANG NAY: ",foods)
+    const totalPages = Math.ceil(count / 2);//ITEMS_PER_PAGE=2
+    const nextPage = currentPage + 1;
+    const previousPage = currentPage - 1;
+    const pages= Array.from(Array(totalPages).keys()).map(i => i + 1);
+
+      res.render("index",{foods,currentPage,pages,nextPage,previousPage})   
+      //res.render("index",{foods,currentPage,pages,nextPage,previousPage})
+    
     // res.render("index", { foods,countFoods,totalPages,pages: Array.from(Array(totalPages).keys()).map(i => i + 1),nextPage, previousPage,} );
   }
 
@@ -47,13 +48,75 @@ class homePageController {
     res.render("homePage/booktable");
   }
 
-  renderMenu(req, res, next) {
-    res.render("homePage/menu");
+  renderMenu =async(req, res, next)=> {
+    let { currentPage } = req.query;
+    let { currentCategory } = req.query;
+    if (!currentPage || isNaN(currentPage)) currentPage = 1;
+    else{
+      currentPage = parseInt(currentPage);
+    }
+
+    const numberFoodPerPage=3;
+    
+    const count =await foodService.getNumberOfFoods();
+    // const foods  =await foodService.getFoodsByFoodPerPage(currentPage,numberFoodPerPage);
+    const foods  =await foodService.getFoodsByCategory(currentCategory);
+    const totalPages = Math.ceil(count / 2);//ITEMS_PER_PAGE=2
+    const nextPage = currentPage + 1;
+    const previousPage = currentPage - 1;
+    const pages= Array.from(Array(totalPages).keys()).map(i => i + 1);
+
+    //res.render("index")   
+    res.render("homePage/menu",{foods,currentPage,pages,nextPage,previousPage});
+  }
+
+  filterMenu =async(req, res, next)=> {
+    const category = req.params.category;
+    console.log("CaTTETETTE",category);
+    let { currentPage } = req.query;
+    if (!currentPage || isNaN(currentPage)) currentPage = 1;
+    else{
+      currentPage = parseInt(currentPage);
+    }
+    // const numberFoodPerPage=10;
+    const foods  =await foodService.getFoodsByCategory(category);
+    const count=foods.length;
+    const totalPages = Math.ceil(count / 2);//ITEMS_PER_PAGE=2
+    const nextPage = currentPage + 1;
+    const previousPage = currentPage - 1;
+    const pages= Array.from(Array(totalPages).keys()).map(i => i + 1);
+
+    //res.render("index")   
+    res.render("homePage/menu",{foods,currentPage,pages,nextPage,previousPage});
   }
   
-  renderShoppingCart(req, res, next) {
-    res.render("homePage/shoppingCart");
+  renderShoppingCart =async(req, res, next)=> {
+    const slug =req.params.slug;
+    const food =await foodService.getFoodDetailBySlut(slug);
+    
+    var foodOnLocalStorage = JSON.stringify(food);
+
+//save it with local storage
+    // global.localStorage.setItem('CartList', foodOnLocalStorage);
+
+    
+//get 'animal' and rehydrate it  (convert it back JSON)
+    // var rehydratedAnimal = JSON.parse(window.localStorage.getItem('animal'));
+    
+    // console.log('slu o COMMENT LA :',slug);
+    // console.log('FOOD ID la: ', foodId);
+    // console.log('CONTENT cua COMMENT la :',comments);
+
+
+    // res.render("food/foodDetail", {food, comments});
+    // const numberFoodPerPage=2;
+    // const currentPage=2;
+    // // const count =await foodService.getNumberOfFoods();
+    // const foods  =await foodService.getFoodsByFoodPerPage(currentPage,numberFoodPerPage);
+
+    res.render("homePage/shoppingCart",{food});
   }
+
 
 }
 

@@ -13,7 +13,7 @@ router.post("/register", authenticationController.register);// router.post("/reg
 
 router.get("/login", authenticationController.login);// router.post("/login", authenticationController.login);
 router.post('/login', passport.authenticate('local', {
-    successRedirect: '/shoppingCart',
+    successRedirect: '/',// thanh cong thi nhay vao main
     failureRedirect: '/authentication/login',
   }));
 // router.post("/loged-in", authenticationController.logedin);// tus code, Delete later !

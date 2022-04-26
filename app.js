@@ -10,6 +10,7 @@ const multihelpers = hbshelpers();
 const session = require('express-session');
 const passport = require('./app/services/passport')
 const expressHandlebarsSections = require('express-handlebars-sections');
+var mustacheExpress = require('mustache-express');
 
 const route = require("./app/routes/index");
 const db = require("./config/db");
@@ -33,7 +34,9 @@ app.engine(
       section: expressHandlebarsSections()
     }
   })
+
 );
+app.engine('mustache', mustacheExpress());
 app.set("view engine", "hbs");
 app.use(logger("dev"));
 app.use(express.json());

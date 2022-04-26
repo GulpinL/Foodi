@@ -3,13 +3,8 @@ const { mongooseToObject } = require("../services/util/mongoose");
 
 class UserController {
   renderUserPage(req, res, next) {
-    //res.json(User);
-    //const UserName =res.query.name;
-    //const UserName2 =req.body.name;
     const UserName =" Long at UserController";
-
-    //res.local.User.name
-    res.render("user/user-profile",{UserName});
+    res.render("userLogined/userProfile",{UserName});
   }
 
   userProfileEditingPage(req, res, next) {

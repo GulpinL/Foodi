@@ -1,1 +1,25 @@
 <div>Here is SHOPPING CART</div>
+ <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Total Price</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each food}}
+    <tr>
+      <th scope="row">{{this.name}}</th>
+      <td>{{this.price}}</td>
+      <td>-1+ </td>
+      <td><a href="{{this.img}}" class="btn btn-primary">120</a></td>    
+      <td><form id="{{this.slug}}" method="post" action="deleteFood/{{this.slug}}"></form>
+<a onclick="document.getElementById('{{this.slug}}').submit();" class="btn btn-primary">delete it</a></td>
+    </tr>
+    {{/each}}
+    
+  </tbody>
+</table>

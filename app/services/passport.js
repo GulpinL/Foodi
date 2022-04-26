@@ -5,7 +5,7 @@ const authenticationService = require('../services/authenticationService');
 
 passport.use(new LocalStrategy({usernameField: 'email'}, async function verify(username, password, cb) {
   console.log('verify' + username + password);
-  const user = await authenticationService.verifyUser(username, password);
+  const user = await authenticationService.verifyUser(username, password);//day laf cho import service de su dung  : verifyUser
   if (user) {
     console.log('USER IS username password :',user);
     return cb(null, user);
