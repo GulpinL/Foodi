@@ -51,6 +51,8 @@ class homePageController {
   renderMenu =async(req, res, next)=> {
     let { currentPage } = req.query;
     let { currentCategory } = req.query;
+    let { currentPriceRange } = req.query;
+    const priceRange = parseInt(currentPriceRange);
     if (!currentPage || isNaN(currentPage)) currentPage = 1;
     else{
       currentPage = parseInt(currentPage);
@@ -60,7 +62,16 @@ class homePageController {
     
     const count =await foodService.getNumberOfFoods();
     // const foods  =await foodService.getFoodsByFoodPerPage(currentPage,numberFoodPerPage);
-    const foods  =await foodService.getFoodsByCategory(currentCategory);
+    let foods ={};
+
+    if (priceRange) 
+    {
+      foods  =await foodService.getFoodsByPriceRange(priceRange);
+    }
+    else{
+      foods  =await foodService.getFoodsByCategory(currentCategory);
+    }
+    //foods  =await foodService.getFoodsByPriceRange(1);
     const totalPages = Math.ceil(count / 2);//ITEMS_PER_PAGE=2
     const nextPage = currentPage + 1;
     const previousPage = currentPage - 1;
@@ -87,6 +98,24 @@ class homePageController {
     const pages= Array.from(Array(totalPages).keys()).map(i => i + 1);
 
     //res.render("index")   
+    res.render("homePage/menu",{foods,currentPage,pages,nextPage,previousPage});
+  }
+
+  searchMenu =async(req, res, next)=> {
+    const {searchName}=req.body;
+    let { currentPage } = req.query;
+    if (!currentPage || isNaN(currentPage)) currentPage = 1;
+    else{
+      currentPage = parseInt(currentPage);
+    }
+    const foods  =await foodService.getFoodsBySearchName(searchName);
+
+    const count=foods.length;
+    const totalPages = Math.ceil(count / 2);//ITEMS_PER_PAGE=2
+    const nextPage = currentPage + 1;
+    const previousPage = currentPage - 1;
+    const pages= Array.from(Array(totalPages).keys()).map(i => i + 1);
+
     res.render("homePage/menu",{foods,currentPage,pages,nextPage,previousPage});
   }
   

@@ -52,3 +52,23 @@ exports.getFoodsByCategory=async (category) =>{
     return foods;
 
 }
+
+exports.getFoodsByPriceRange=async (priceRange) =>{
+    // const priceRange = parseInt(currentPriceRange);
+    // console.log("service PRICEEEE", priceRange);
+    let foods ={};
+    if(priceRange==50){
+        foods = await Food.find({price:{$gt:0,$lt:50}}).lean();
+        return foods;
+    }
+    foods = await Food.find({price:{$gt:51,$lt:100000}}).lean();
+    return foods;
+
+}
+
+exports.getFoodsBySearchName=async (searchName) =>{
+    
+    const foods = await Food.find({name:searchName}).lean();
+    return foods;
+
+}

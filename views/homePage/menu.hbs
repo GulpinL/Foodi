@@ -15,12 +15,24 @@
         </h2>
       </div>
 
+<div class="form-group">
+      <form action="searching" autocomplete="off" method="POST">
+                    <label for="inputUsernameEmail">Search</label>
+                    <input type="text" class="form-control" id="searchName" name="searchName">
+                    
+
+                    <button type="submit" class="btn btn btn-primary">
+                    Search
+                    </button>
+      </form>
       <ul class="filters_menu">
         <li class="active" data-filter="*" ><a href="?currentCategory=All">All</a></li>
         <li data-filter=".burger"><a href="?currentCategory=burger">Burger</a></li>
         <li data-filter=".pizza"><a href="?currentCategory=Pizza">Pizza</a></li>
         <li data-filter=".pasta"><a href="?currentCategory=pasta">Pasta</a></li>
         <li data-filter=".fries"><a href="?currentCategory=fries">Fries</a></li>
+        <li data-filter=".pasta"><a href="?currentPriceRange=50">0-50</a></li>
+        <li data-filter=".fries"><a href="?currentPriceRange=100">50-100</a></li>
       </ul>
 
       <div class="filters-content">

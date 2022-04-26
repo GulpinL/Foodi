@@ -8,6 +8,7 @@ router.get("/", homePageController.renderHomePage);
 router.get("/about",homePageController.renderAbout);
 router.get("/booktable",homePageController.renderBooktable);
 router.get("/menu",homePageController.renderMenu);
+router.post("/searching",homePageController.searchMenu);
 router.get("/menu/:category",homePageController.filterMenu);
 
 // router.get("/user",homePage.renderUserPage);
