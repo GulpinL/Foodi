@@ -1,0 +1,49 @@
+{{!-- <ul class="filters_menu">
+        <li class="active" data-filter="*" ><a href="?currentCategory=All">All</a></li>
+        <li data-filter=".burger"><a href="?currentCategory=burger">Burger</a></li>
+        <li data-filter=".pizza"><a href="?currentCategory=Pizza">Pizza</a></li>
+        <li data-filter=".pasta"><a href="?currentCategory=pasta">Pasta</a></li>
+        <li data-filter=".fries"><a href="?currentCategory=fries">Fries</a></li>
+        <li data-filter=".pasta"><a href="?currentPriceRange=50">0-50</a></li>
+        <li data-filter=".fries"><a href="?currentPriceRange=100">50-100</a></li>
+</ul> --}}
+<form action="sortingUser" autocomplete="off" method="POST">
+    
+                    <button type="submit" class="btn btn btn-primary">
+                    Sort By Name
+                    </button>
+                    
+      </form>
+{{!-- <form action="sortingUser2" autocomplete="off" method="POST">
+    
+                    <button type="submit" class="btn btn btn-primary">
+                    Sort By Price
+                    </button>
+                    
+      </form> --}}
+     
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+
+      <th scope="col">Detail</th>
+      <th scope="col">Unban</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each users}}
+    <tr>
+      <th scope="row">{{this._id}}</th>
+      <td>{{this.name}}</td>
+      <td>{{this.email}}</td>
+      <td><a href="danh-sach-nguoi-dung/{{this.name}}" class="btn btn-primary">Detail</a></td>
+      <td><form id="{{this.slug}}" method="post" action="unBan/{{this.slug}}"></form>
+<a onclick="document.getElementById('{{this.slug}}').submit();" class="btn btn-primary">delete it</a></td>
+    </tr>
+    {{/each}}
+    
+  </tbody>
+</table>

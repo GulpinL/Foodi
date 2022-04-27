@@ -16,4 +16,8 @@ router.post("/updatedFood/:_id", adminController.updatedFood);
 //delete product
 router.post("/deleteFood/:slug", adminController.deleteFood);
 
+router.get("/danh-sach-nguoi-dung", adminController.renderUserList);
+router.get("/danh-sach-nguoi-dung/:name", adminController.renderUserDetail);
+router.post("/sortingUser",adminController.sortName);
+router.post("/sortingUser2",adminController.sortCreateDay);
 module.exports = router;
