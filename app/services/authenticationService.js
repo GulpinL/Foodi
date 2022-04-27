@@ -14,12 +14,12 @@ exports.register = async (userEmail, userPassword,userName)=> {
     return 1;
   };
   
-  exports.isUserExist =  async (email)=> {// ? use where
+  exports.isUserExist =  async (email)=> {
     const user = await User.findOne({ email:email });
     return user;
   };
   
-  exports.verifyUser = async function (email, password) {// ?
+  exports.verifyUser = async function (email, password) {
     // const user = await users.findOne({email:verifyUserEmail});//lean();
     const user = await User.findOne({ email });
     // const user = await User.findByCredentials(email, password);
@@ -29,6 +29,14 @@ exports.register = async (userEmail, userPassword,userName)=> {
     if (bcrypt.compareSync(password, user.password))
       return user;
     return false;
+
+  };
+
+  exports.changeUserPassword = async function (email,newPassword) {
+      newPassword = await bcrypt.hash(newPassword, 8);
+      let user= await User.updateOne({email:email},{password:newPassword});
+      console.log("user o change Password ",user);
+      return 1;
 
   };
 

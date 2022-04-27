@@ -6,42 +6,81 @@
     <div class="col-lg-9">
       <h2>Món: {{food.name}}</h2>
       <img src="{{food.img}}" alt="" srcset="">
-      <p>mô tả: {{food.description}}</p>
-      <p>đánh giá: {{food.rating}}</p>
+      <p>Mô tả: {{food.description}}</p>
+     
+      {{!-- <p>DDánh giá: {{food.rating}}</p> --}}
     </div>
     <div class="col-lg-3">
       <p>giá tiền: {{food.price}}</p>
-      <button>mua ngay</button>
+      <div >
+        <button class="btn btn-success">Mua ngay</button>
+      </div>
     </div>
   </div>
 </div>
+
+
 <div>
-  a
+  COMMENT
 </div>
 {{#each comments}}
-                <div>{{content}}</div>
+                <div class="form-control">{{content}}</div>
                 {{/each}}
-<div>
-  a
-</div>
 
-<form class="form-horizontal" action='{{food.slug}}/addComment' method="POST">
-  <fieldset>
 
-    <div class="control-group">
+<form action='{{food.slug}}/addComment' method="POST">
+    <div class="form-group">
       <!-- Password   /-->
-      <label class="control-label" for="img">Comment here</label>
-      <div class="controls">
-        <input type="text" id="comment" name="comment" placeholder="New Comment" class="input-xlarge">
-        <p class="help-block">Nhap comment moi vao</p>
+      <label >Comment here</label>
+      <div >
+        <input class="form-control" type="text" id="comment" name="comment" placeholder="New Comment" >
       </div>
     </div>
-
-     <div class="control-group">
       <!-- Button -->
-      <div class="controls">
+      <div >
         <button class="btn btn-success">Comment</button>
       </div>
-    </div>
-    </fieldset>
   </form>
+
+
+{{!-- Show related product --}}
+<label >related product</label>
+<div class="food_section layout_padding">
+    <section class="container">
+<div class="filters-content">
+        <div class="row grid">
+           {{#each relatedFoods}}
+          <div class="col-sm-6 col-lg-4 all pizza">
+            <div class="box">
+              <div>
+                <div class="img-box">
+                  {{!-- <img src="images/f1.png" alt=""> --}}
+                  <img src={{img}} alt="">
+                </div>
+                <div class="detail-box">
+                  <h5>
+                    {{!-- Delicious Pizza --}}
+                    <a href="/food/{{slug}}">
+                                  {{name}}
+                                </a>
+                  </h5>
+                 
+                  <div class="options">
+                    <h6>
+                      {{!-- $20 --}}
+                      ${{price}}
+                    </h6>
+                   
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+           {{/each}}
+
+
+         </div>
+          
+        </div>
+      </section>
+    </div>

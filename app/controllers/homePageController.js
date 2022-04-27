@@ -12,7 +12,7 @@ class homePageController {
       currentPage = parseInt(currentPage);
     }
 
-    const numberFoodPerPage=2;
+    const numberFoodPerPage=3;
     
     const count =await foodService.getNumberOfFoods();
     const foods  =await foodService.getFoodsByFoodPerPage(currentPage,numberFoodPerPage);
@@ -23,9 +23,6 @@ class homePageController {
     const pages= Array.from(Array(totalPages).keys()).map(i => i + 1);
 
       res.render("index",{foods,currentPage,pages,nextPage,previousPage})   
-      //res.render("index",{foods,currentPage,pages,nextPage,previousPage})
-    
-    // res.render("index", { foods,countFoods,totalPages,pages: Array.from(Array(totalPages).keys()).map(i => i + 1),nextPage, previousPage,} );
   }
 
   renderUserPage(req, res){
@@ -117,6 +114,16 @@ class homePageController {
     const pages= Array.from(Array(totalPages).keys()).map(i => i + 1);
 
     res.render("homePage/menu",{foods,currentPage,pages,nextPage,previousPage});
+  }
+  // sortMenu
+  sortMenu =async(req, res, next)=> {
+    const foods  =await foodService.getFoodsAndSortByPrice();
+    res.render("homePage/menu",{foods});
+  }
+
+  sortMenu2 =async(req, res, next)=> {
+    const foods  =await foodService.getFoodsAndSortByName();
+    res.render("homePage/menu",{foods});
   }
   
   renderShoppingCart =async(req, res, next)=> {

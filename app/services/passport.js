@@ -15,7 +15,7 @@ passport.use(new LocalStrategy({usernameField: 'email'}, async function verify(u
 
 passport.serializeUser(function(user, cb) {
   process.nextTick(function() {
-    cb(null, { _id: user._id, email: user.email });
+    cb(null, { _id: user._id, email: user.email,name: user.name}); // them thong tin luu lai
   });
 });
 

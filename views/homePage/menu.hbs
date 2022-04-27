@@ -25,6 +25,22 @@
                     Search
                     </button>
       </form>
+
+      <form action="sorting" autocomplete="off" method="POST">
+    
+                    <button type="submit" class="btn btn btn-primary">
+                    Sort By Price
+                    </button>
+                    
+      </form>
+     
+     <form action="sorting2" autocomplete="off" method="POST">
+    
+                    <button type="submit" class="btn btn btn-primary">
+                    Sort By Name
+                    </button>
+                    
+      </form>
       <ul class="filters_menu">
         <li class="active" data-filter="*" ><a href="?currentCategory=All">All</a></li>
         <li data-filter=".burger"><a href="?currentCategory=burger">Burger</a></li>
@@ -48,7 +64,9 @@
                 <div class="detail-box">
                   <h5>
                     {{!-- Delicious Pizza --}}
-                    {{name}}
+                    <a href="/food/{{slug}}">
+                                  {{name}}
+                                </a>
                   </h5>
                   <p>
                     {{!-- Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque --}}

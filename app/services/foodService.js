@@ -72,3 +72,27 @@ exports.getFoodsBySearchName=async (searchName) =>{
     return foods;
 
 }
+// getFoodsAndSortByPrice
+exports.getFoodsAndSortByPrice=async () =>{
+    
+    const foods = await Food.find().sort({price:1}).lean();
+    return foods;
+
+}
+//getFoodsAndSortByName
+exports.getFoodsAndSortByName=async () =>{
+    
+    const foods = await Food.find().sort({name:1}).lean();// 1 or -1
+    return foods;
+
+}
+
+exports.getRelatedFoods=async (inputSlug) =>{
+    
+    const food =await Food.findOne({slug: inputSlug}).lean();
+    const foodCategory=food.category;
+    const foods = await Food.find({category: foodCategory}).lean();
+    return foods;
+
+}
+
