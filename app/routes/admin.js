@@ -20,4 +20,8 @@ router.get("/danh-sach-nguoi-dung", adminController.renderUserList);
 router.get("/danh-sach-nguoi-dung/:name", adminController.renderUserDetail);
 router.post("/sortingUser",adminController.sortName);
 router.post("/sortingUser2",adminController.sortCreateDay);
+router.post("/sortingFood",adminController.sortFoodName);
+router.post("/searchingFoodInFoodList",adminController.searchingFoodInFoodList);
+// searchingFoodInFoodList
+// router.post("/searching",homePageController.searchMenu);
 module.exports = router;

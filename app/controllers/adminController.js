@@ -4,6 +4,7 @@ const {
   mongooseToObject,
 } = require("../services/util/mongoose");
 const  userService  = require("../services/userService");
+const  foodService  = require("../services/foodService");
 
 
 class adminController {
@@ -59,6 +60,26 @@ class adminController {
       // != FIND
       res.render("admin/userAccountDetail",{userSS});
     }
+  
+
+
+    sortFoodName =async(req, res, next)=> {
+      const foods  =await foodService.getFoodsAndSortByName();
+      res.render("admin/foodList",{foods});
+      // res.redirect("/admin/danh-sach-nguoi-dung");
+      // res.render("admin/userAccountList",{users});
+    }
+    // searchingFoodInFoodList
+    searchingFoodInFoodList =async(req, res, next)=> {
+      const {searchFoodName}=req.body;
+      
+      const foods  =await foodService.getFoodsBySearchName(searchFoodName);
+  
+      res.render("admin/foodList",{foods});
+    }
+
+
+
 
   renderFoodAdding(req, res, next) {
     res.render("admin/foodAdding");
